@@ -2,6 +2,7 @@ import logging
 import os
 import sys
 import time
+import requests
 
 from dotenv import load_dotenv
 from langchain_community.document_loaders import TextLoader
@@ -9,6 +10,7 @@ from langchain_community.embeddings import OpenAIEmbeddings
 from langchain.text_splitter import CharacterTextSplitter
 from langchain_pinecone import PineconeVectorStore
 from pinecone import ServerlessSpec, Pinecone as PineconeClient
+from bs4 import BeautifulSoup
 
 load_dotenv()
 
@@ -44,18 +46,27 @@ def initialize_vector_store():
 
 	return vector_store
 
+# スクレイピングでデータを得る
+def data_from_scraping():
+	r = requests.get("https://news.netkeiba.com/?pid=news_view&no=284559")
+	r.encoding = r.apparent_encoding
+
+	print(r.content)
+
 # テキストデータを Pinecone に保存
 if __name__ == "__main__":
-	file_path = sys.argv[1]
-	loader = TextLoader(file_path)
-	raw_docs = loader.load()
+	data_from_scraping()
 
-	logger.info("Loaded %d documents", len(raw_docs))
+	# file_path = sys.argv[1]
+	# loader = TextLoader(file_path)
+	# raw_docs = loader.load()
 
-	text_splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=30)
-	docs = text_splitter.split_documents(raw_docs)
+	# logger.info("Loaded %d documents", len(raw_docs))
+
+	# text_splitter = CharacterTextSplitter(chunk_size=300, chunk_overlap=30)
+	# docs = text_splitter.split_documents(raw_docs)
 	
-	logger.info("Split %d documents", len(docs))
+	# logger.info("Split %d documents", len(docs))
 
-	vectorstore = initialize_vector_store()
-	vectorstore.add_documents(docs)
+	# vectorstore = initialize_vector_store()
+	# vectorstore.add_documents(docs)
