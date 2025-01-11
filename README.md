@@ -1,7 +1,7 @@
 # horses-reputation-llm
 出走馬の評判を検索して LLM が回答してくれるアプリケーション
 
-## 開発環境のセットアップ（初回）
+## 開発環境のセットアップ（初回 or 開発環境の立ち上げ前に必要に応じて）
 
 1. python の仮想環境を作成する
 
@@ -23,6 +23,27 @@
 ❯ pip install -r requirements.txt
 ```
 
+### フロントエンド
+
+1. node のインストール
+
+```console
+❯ nodenv install
+```
+
+2. pnpm を有効化
+
+```console
+❯ corepack enable
+❯ nodenv rehash
+```
+
+3. 依存ライブラリをインストールする
+
+```console
+❯ pnpm install
+```
+
 ##　開発環境の立ち上げ
 
 1. 仮想環境をアクティベートする
@@ -34,7 +55,7 @@
 2. アプリを立ち上げる
 
 ```console
-❯ streamlit run app.py
+❯ pnpm run dev
 ```
 
 ## 各種コマンド
