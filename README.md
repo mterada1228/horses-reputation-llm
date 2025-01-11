@@ -31,6 +31,20 @@
 ❯ source env/bin/activate
 ```
 
+2. アプリを立ち上げる
+
+```console
+❯ streamlit run app.py
+```
+
+## 各種コマンド
+
+1. netkeiba からデータを RAG に追加する
+
+```console
+❯ python add_document.py <取得したいニュース一覧のページナンバーの開始地点> <取得したいニュース一覧のページナンバーの終了地点>
+```
+
 ## 開発環境の立ち下げ
 
 ```console
