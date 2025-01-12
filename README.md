@@ -1,7 +1,10 @@
 # horses-reputation-llm
+
 出走馬の評判を検索して LLM が回答してくれるアプリケーション
 
 ## 開発環境のセットアップ（初回 or 開発環境の立ち上げ前に必要に応じて）
+
+### API
 
 1. python の仮想環境を作成する
 
@@ -9,19 +12,22 @@
 ❯ python3 -m venv env
 ```
 
-2. 環境変数を設定する
+2. 必要なパッケージをインストールする
+
+```console
+❯ pip install -r requirements.txt
+
+❯ cd llm-api
+❯ pip install -e .
+```
+
+3. 環境変数を設定する
 
 ```console
 ❯ cp .env.example .env
 ```
 
 .env を編集して OPEN_AI_API_KEY に発行した API KEY を設定
-
-3. 必要なパッケージをインストールする
-
-```console
-❯ pip install -r requirements.txt
-```
 
 ### フロントエンド
 
