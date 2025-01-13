@@ -9,12 +9,13 @@
 1. python の仮想環境を作成する
 
 ```console
-❯ python3 -m venv env
+❯ python -m venv env
 ```
 
 2. 必要なパッケージをインストールする
 
 ```console
+❯ source env/bin/activate
 ❯ pip install -r requirements.txt
 
 ❯ cd llm-api
@@ -27,7 +28,8 @@
 ❯ cp .env.example .env
 ```
 
-.env を編集して OPEN_AI_API_KEY に発行した API KEY を設定
+- .env を編集して OPEN_AI_API_KEY に発行した API KEY を設定
+- .env を編集して PINECONE_xxx に必要な値を設定
 
 ### フロントエンド
 
