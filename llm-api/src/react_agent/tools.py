@@ -1,34 +1,15 @@
-"""This module provides example tools for web scraping and search functionality.
+from langchain.tools.retriever import create_retriever_tool
 
-It includes a basic Tavily search function (as an example)
+from retriever import create_retriever
 
-These tools are intended as free examples to get started. For production use,
-consider implementing more robust and specialized tools tailored to your needs.
-"""
+def create_tools():
+	retriever = create_retriever()
+	retriever_tool = create_retriever_tool(
+		retriever,
+		"retrieve_netkeiba_news",
+		"Search and return information about reputation of a horse from netkeiba news."
+	)
 
-from typing import Any, Callable, List, Optional, cast
+	tools = [retriever_tool]
 
-from langchain_community.tools.tavily_search import TavilySearchResults
-from langchain_core.runnables import RunnableConfig
-from langchain_core.tools import InjectedToolArg
-from typing_extensions import Annotated
-
-from react_agent.configuration import Configuration
-
-
-async def search(
-    query: str, *, config: Annotated[RunnableConfig, InjectedToolArg]
-) -> Optional[list[dict[str, Any]]]:
-    """Search for general web results.
-
-    This function performs a search using the Tavily search engine, which is designed
-    to provide comprehensive, accurate, and trusted results. It's particularly useful
-    for answering questions about current events.
-    """
-    configuration = Configuration.from_runnable_config(config)
-    wrapped = TavilySearchResults(max_results=configuration.max_search_results)
-    result = await wrapped.ainvoke({"query": query})
-    return cast(list[dict[str, Any]], result)
-
-
-TOOLS: List[Callable[..., Any]] = [search]
+	return tools
