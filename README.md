@@ -9,6 +9,7 @@
 1. python の仮想環境を作成する
 
 ```console
+❯ cd llm-api
 ❯ python -m venv env
 ```
 
@@ -16,9 +17,6 @@
 
 ```console
 ❯ source env/bin/activate
-❯ pip install -r requirements.txt
-
-❯ cd llm-api
 ❯ pip install -e .
 ```
 
@@ -50,6 +48,12 @@
 
 ```console
 ❯ pnpm install
+```
+
+4. langgraph の立ち上げ
+
+```console
+❯ PYTHONPATH=${PWD}/src/react_agent langgraph dev
 ```
 
 ##　開発環境の立ち上げ
